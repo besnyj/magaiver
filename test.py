@@ -5,6 +5,8 @@ from overview import Investidor
 
 #rules = classes.Databases.cursor.execute("""SELECT description FROM rules""").fetchall()
 
+gostoso = "hetmanek"
+
 rules = open('rules.txt', encoding="utf8")
 rules = rules.read()
 
