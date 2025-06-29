@@ -1,0 +1,79 @@
+Ativos para Reserva de emergencia:
+	-CDB Banco Volkswagen (2026/100% CDI)
+	-CDB Banco Carrefour (2026/100% CDI)
+
+Ativos Pós-Fixados:
+	-LCI BRB (2026/93% CDI)
+	-LCI Banco XP (2026/94,5% CDI)
+	-LCA Sicoob (2027/92% CDI)
+	-CDB Original (2027/108% CDI)
+	-CDB Paulista (2027/111% CDI)
+	-CDB Digimais (2027/110% CDI)
+	-CDB LusoBrasileiro (2028/109% CDI)
+	-CDB Original (2028/110% CDI)
+	-CDB Picpay (2029/111,5% CDI)
+	-CDB BDMG (2029/110% CDI)
+	-CDB BDMG (2030/111% CDI)
+	-CDB CS2 (2027/CDI + 0,85%)
+	-CDB Original (2028/CDI + 0,94%)
+	-CDB C6 (2029/CDI + 0,90%)
+	-CDB C6 (2030/CDI + 0,90%)
+	CRIs e CRAs:	
+		-CRA Minerva (2029/100% CDI)
+		-CRI Cyrela (2030/99% CDI)
+		-CRA JHSF (2030/103% CDI)
+		-CRA BTG (2033/99% CDI)
+		-CRA Banco ABC (2034/102% CDI)
+		-CRI JSL (2028/CDI + 1,10%)
+		-CRA Trisul (2030/CDI + 1,40%)
+		-CRA Vamos (2030/CDI + 1,30%)
+
+Ativos Pré-Fixados:
+	-CDB Banco XP (2026/15,25%)
+	-CDB Picpay (2026/14,98%)
+	-CDB NBC Bank (2026/14,82%)
+	-CDB Picpay (2027/15,06%)
+	-CDB NBC Bank (2028/14,83%)
+	-CDB NBC Bank (2030/14,96%)
+	-CDB Picpay (2030/14,94%)
+	CRIs e CRAs:
+		-CRA Minerva (2030/14,50%)
+
+Ativos IPCA+:
+	-CDB Pine (2028/IPCA + 8,40%)
+	-CDB Fibra (2028/IPCA + 7,95%)
+	-CDB C6 (2028/IPCA + 7,80%)
+	-CDB Daycoval (202/IPCA + 7,660%)
+	-CDB Haitong (2028/IPCA + 8,05%)
+	-CDB Pine (2029/IPCA + 8,05%)
+	-CDB Fibra (2030/IPCA + 7,85%)
+	-CDB Pine (2031/IPCA + 7,95%)
+	CRIs e CRAs
+		-CRA Adecoagro (2027/IPCA + 8,60%)
+		-CRA Marfrig (2028/IPCA + 7,95%)
+		-CRA Raizen (2030/IPCA + 7,50%)
+		-CRA JBS (2030/IPCA + 7,40%)
+		-CRA Klabin (2034/IPCA + 6,95%)
+
+Fundos Multimercado (Alta volatilidade):
+	-Genoa Capital Radar FIC FIM
+	-Giant Zarathustra FIC FIM
+	-Ibiuna Hedge STH FIC FIM
+	-JGP Strategy FIC FIM
+	-Kinea Chronos FIM
+	-Legacy Capital FIC FIM
+	-SPX Nimitz Gripen Advisory FIC FIM
+	-Verde AM X60 Advisory FIC FIM
+	
+Renda Variavel:
+	-Empresa: Alupart. Ticker: ALUP11
+	-Empresa: B3. Ticker: B3SA3
+	-Empresa: Banco do Brasil. Ticker: BBAS3
+	-Empresa: Cemig. Ticker: CMIG4
+	-Empresa: Copel. Ticker: CPLE6
+	-Empresa: Eletrobras. Ticker: ELET3
+	-Empresa: Itau Unibanco. Ticker: ITUB4
+	-Empresa: Petrobras. Ticker: PTR4
+	-Empresa: TIM. Ticker: TIMS3
+	-Empresa: Vale. Ticker: VALE3
+	-Empresa: Vivo. Ticker: VIVT3.
