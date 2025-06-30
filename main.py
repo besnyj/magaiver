@@ -1,21 +1,19 @@
-import signal
+import os
 import subprocess
-import time
+from typing import get_args
 
-import requests
+import ollama  # type: ignore
+import pandas as pd
 
 from config import ChatConfig, ChatMessage
 from investidor import Investidor
-import ollama  # type: ignore
-from typing import get_args
-import os
-import pandas as pd
+
 
 def list_files(folder_name: str):
     return [file for file in os.listdir(folder_name) if file.endswith('.txt')]
 
-def set_investors() -> Investidor:
 
+def set_investors() -> Investidor:
     documentAddress = "C:/Users/Felipe/Downloads/Overview.xlsx"
     sheet = 'Assessor'
 
@@ -27,6 +25,7 @@ def set_investors() -> Investidor:
 def read_files(path: str) -> str:
     with open(path, 'r', encoding='utf-8') as file:
         return file.read()
+
 
 def build_config(investidor: Investidor) -> ChatConfig:
     print("== Choose your seetings ==\n")
@@ -41,13 +40,14 @@ def build_config(investidor: Investidor) -> ChatConfig:
             break
         except (ValueError, IndexError):
             print("Invalid selection\n")
-    
+
     message = build_message(investidor)
-    
+
     return ChatConfig(
         model=model_name,
         messages=message
     )
+
 
 def build_message(investidor: Investidor) -> ChatMessage:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -79,6 +79,7 @@ def build_message(investidor: Investidor) -> ChatMessage:
 
     return [ChatMessage(role="user", content=mensagem)]
 
+
 def use_ollama(config: ChatConfig) -> str:
     try:
         response = ollama.chat(
@@ -93,12 +94,16 @@ def use_ollama(config: ChatConfig) -> str:
 
 
 def main():
-
+    ollama = subprocess.Popen(['ollama', 'serve'], stdout=subprocess.DEVNULL,
+                              stderr=subprocess.DEVNULL)
     investidor = set_investors()
     config = build_config(investidor)
     response = use_ollama(config)
     for chunk in response:
         print(chunk['message']['content'], end='', flush=True)
+
+    kill_ollama = subprocess.Popen(['ollama', 'stop', config.model])
+    kill_ollama.wait()
 
 
 if __name__ == "__main__":
