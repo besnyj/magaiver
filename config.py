@@ -9,12 +9,7 @@ class ChatMessage:
 @dataclass
 class ChatConfig:
     model: Literal["gemma3:27b",
-    "gemma3:12b",
-    "gemma2:27b",
-    "mistral-small3.1:24b",
-    "deepseek-r1:32b",
-    "qwen3:32b",
-    "phi4-reasoning:14b"]
+    "llama3.3:70b"]
     messages: List[ChatMessage]
     stream: bool = True
     think: bool = False

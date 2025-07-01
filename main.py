@@ -1,8 +1,7 @@
 import os
 import subprocess
-from typing import get_args
 
-import ollama  # type: ignore
+import ollama
 import pandas as pd
 
 from config import ChatConfig, ChatMessage
@@ -19,7 +18,10 @@ def set_investors() -> Investidor:
 
     df = pd.read_excel(documentAddress, sheet, skiprows=3, usecols=[2, 2])
 
-    return Investidor(df.values[11], df.values[23], df.values[8])
+    investidor =  Investidor(df.values[11][0], df.values[23][0], df.values[8][0])
+
+    return investidor
+
 
 
 def read_files(path: str) -> str:
@@ -28,24 +30,10 @@ def read_files(path: str) -> str:
 
 
 def build_config(investidor: Investidor) -> ChatConfig:
-    print("== Choose your seetings ==\n")
-    model_list = get_args(ChatConfig.__annotations__['model'])
-    print("\nmodel list:")
-    for index, model in enumerate(model_list, start=1):
-        print(f"{index}. {model}")
-    while True:
-        try:
-            choice = int(input("Choose a model by number: "))
-            model_name = model_list[choice - 1]
-            break
-        except (ValueError, IndexError):
-            print("Invalid selection\n")
-
-    message = build_message(investidor)
 
     return ChatConfig(
-        model=model_name,
-        messages=message
+        model="gemma3:27b",
+        messages=build_message(investidor)
     )
 
 
@@ -68,43 +56,47 @@ def build_message(investidor: Investidor) -> ChatMessage:
         print(f"An error occurred: {e}")
 
     mensagem = (
-        f"Use this information as your context: {rule}; {profile}; {opportunity}; "
-        f"SELIC hoje é 15%. IPCA hoje é 4.8%. CDI hoje é 14.9%.\n"
-        f"Sua tarefa: Crie um portifolio de investimentos de {investidor.patrimonioLiquido} reais para um perfil {investidor.perfil}.\n"
-        f"Separe parte do valor do portifolio para reserva de emergência no valor de 10x{investidor.despesasTotais}. "
-        f"A % da reserva faz parte da % total para pós-fixados.\n"
-        f"Cada classe de investimento deve ter no máximo 4 ativos.\n"
-        f"Liste o portifolio com os ativos escolhidos por classe e com os valores em cada ativo. Sem comentários ou observações."
+        f"Use this information as your context: {rule}. {profile}. {opportunity}. "
+        f"SELIC today is at 15%. IPCA today is at 4.8%. CDI today is at 14.9%.\n"
+        f"Your task: Create an investments portfolio for a {investidor.perfil} profile with {investidor.patrimonioLiquido} reais of net worth,"
+        f" following the proportions and using the investments given in the context part, separating"
+        f"part of the portfolio for an emergency reserve of 10x{investidor.despesasTotais} reais. "
+        f"Each investment class should have no more than 4 assets. "
+        f"Show me the portfolio with the chosen assets for each investment class and with the value in reais (R$) for each class and asset. No comments and no observations."
     )
 
     return [ChatMessage(role="user", content=mensagem)]
 
 
 def use_ollama(config: ChatConfig) -> str:
+
     try:
         response = ollama.chat(
             model=config.model,
             messages=[message.__dict__ for message in config.messages],
             stream=config.stream,
+            keep_alive=-1,
             options={"think": config.think}
         )
     except Exception as error:
         print(error)
+
     return response
 
-
 def main():
-    ollama = subprocess.Popen(['ollama', 'serve'], stdout=subprocess.DEVNULL,
-                              stderr=subprocess.DEVNULL)
+
+    ollama_server = subprocess.Popen(['ollama', 'serve'], stdout=subprocess.DEVNULL,
+                                     stderr=subprocess.DEVNULL)
+
     investidor = set_investors()
     config = build_config(investidor)
+    print('loading task 1')
     response = use_ollama(config)
     for chunk in response:
         print(chunk['message']['content'], end='', flush=True)
 
     kill_ollama = subprocess.Popen(['ollama', 'stop', config.model])
     kill_ollama.wait()
-
 
 if __name__ == "__main__":
     main()
