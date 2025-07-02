@@ -53,13 +53,13 @@ IPCA+:
 	-CDB Fibra (2030/IPCA + 7,95%)
 	-CDB Fibra (2031/IPCA + 7,90%)
 	-CDB BMG (2032/IPCA + 7,25%)
-	CRI MRV (2029/IPCA + 9,15%)
-	CRI Rede D’Or (2029/IPCA + 7,75%)
-	CRA Vamos (2030/IPCA + 8,85%)
-	CRA BRF (2032/IPCA + 7,90%)
-	CRA Marfrig (2032/IPCA + 7,90%)
-	CRA BTG (2033/IPCA + 7,20%)
-	CRA CMAA (2034/IPCA + 8,75%)
+	-CRI MRV (2029/IPCA + 9,15%)
+	-CRI Rede D’Or (2029/IPCA + 7,75%)
+	-CRA Vamos (2030/IPCA + 8,85%)
+	-CRA BRF (2032/IPCA + 7,90%)
+	-CRA Marfrig (2032/IPCA + 7,90%)
+	-CRA BTG (2033/IPCA + 7,20%)
+	-CRA CMAA (2034/IPCA + 8,75%)
 
 Fundos Multimercado disponiveis (Alta volatilidade):
 	-Genoa Capital Radar FIC FIM
