@@ -12,10 +12,10 @@ def list_files(folder_name: str):
     return [file for file in os.listdir(folder_name) if file.endswith('.txt')]
 
 
-def set_investors() -> Investidor:
-    documentAddress = "C:/Users/Felipe/Downloads/Overview.xlsx"
+def set_investors(formulario) -> Investidor:
+    document = formulario
     sheet = 'Assessor'
-    df = pd.read_excel(documentAddress, sheet, skiprows=3, usecols=[2, 2])
+    df = pd.read_excel(document, sheet, skiprows=3, usecols=[2, 2])
     investidor =  Investidor(df.values[11][0], df.values[23][0], df.values[8][0])
     return investidor
 
@@ -83,12 +83,12 @@ def use_ollama(config: ChatConfig) -> str:
 
     return response.message.content
 
-def main():
+def start(formulario):
 
     ollama_server = subprocess.Popen(['ollama', 'serve'], stdout=subprocess.DEVNULL,
                                      stderr=subprocess.DEVNULL)
 
-    investidor = set_investors()
+    investidor = set_investors(formulario)
     config = build_config(investidor)
     config.stream=False
     print('loading task 1')
@@ -100,6 +100,3 @@ def main():
 
     kill_ollama = subprocess.Popen(['ollama', 'stop', config.model])
     kill_ollama.wait()
-
-if __name__ == "__main__":
-    main()

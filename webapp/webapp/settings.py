@@ -55,7 +55,7 @@ ROOT_URLCONF = 'webapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/Users/felipe/Desktop/automatizador_de_portifolio/front-end/webapp/templates'],
+        'DIRS': ['/Users/felipe/Desktop/automatizador_de_portifolio/front-back/webapp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
