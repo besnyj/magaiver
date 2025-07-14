@@ -4,8 +4,8 @@ import subprocess
 import ollama
 import pandas as pd
 
-from config import ChatConfig, ChatMessage
-from investidor import Investidor
+from .config import ChatConfig, ChatMessage
+from .investidor import Investidor
 
 
 def list_files(folder_name: str):
