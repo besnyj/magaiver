@@ -81,7 +81,7 @@ def use_ollama(config: ChatConfig) -> str:
     except Exception as error:
         print(error)
 
-    return response.message.content
+    return response
 
 def start(formulario):
 
@@ -90,13 +90,12 @@ def start(formulario):
 
     investidor = set_investors(formulario)
     config = build_config(investidor)
-    config.stream=False
+    config.stream=True
     print('loading task 1')
+    print(investidor.perfil, investidor.despesasTotais, investidor.patrimonioLiquido)
     response = use_ollama(config)
-    # for chunk in response:
-    #     print(chunk['message']['content'], end='', flush=True)
-    #     print_output(chunk['message']['content'])
-    print_output(response)
+    for chunk in response:
+        print(chunk['message']['content'], end='', flush=True)
 
     kill_ollama = subprocess.Popen(['ollama', 'stop', config.model])
     kill_ollama.wait()

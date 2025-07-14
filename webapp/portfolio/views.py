@@ -8,8 +8,7 @@ def portfolio_upload(request):
     formulario = PortfolioForm(request.POST, request.FILES)
 
     if request.method == "POST":
-
-        start(request.FILES["formulario_cliente"])
+        portfolio = start(request.FILES["formulario_cliente"])
 
 
     return render(request, 'portfolio_upload.html', {"form": formulario})
