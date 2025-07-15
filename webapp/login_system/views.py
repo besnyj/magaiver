@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
+import requests
+from .models import Assessor
+import json
+
 
 
 def login_user(request):
@@ -10,13 +11,17 @@ def login_user(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('portfolio')
-        else:
-            messages.success(request, ("Error"))
-            return redirect('login')
+        credentials = Assessor(username, password)
+        credentials = credentials.to_dict()
+
+        r = requests.post('http://localhost:8080/', json=credentials)
+        print(r.text)
+
+        # if user is not None:
+        #     login(request, user)
+        #     return redirect('portfolio')
+        # else:
+        #     messages.success(request, ("Error"))
 
     return render(request, 'authentication/login.html', {})
 

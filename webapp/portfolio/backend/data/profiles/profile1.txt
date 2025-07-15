@@ -1,6 +1,0 @@
-﻿Alocacao por perfil de risco:
-	- o portifolio de um perfil Super conservador é composto de ativos 100% pós fixados;
-	- o portifolio de um perfil Conservador é composto de ativos 65% pos fixado, 3% pre fixado, 20% IPCA e 12% multimercado;
-	- o portifolio de um perfil Moderado é composto de ativos 50% pos fixado, 3% pre fixado, 25% IPCA, 10% multimercado e 12% renda variavel;
-	- o portifolio de um perfil Arrojado é composto de  ativos 40% pos fixado, 7% pre fixado, 23% IPCA, 7% multimercado e 23% renda variavel;
-	- o portifolio de um perfil Agressivo é composto de ativos 35% pos fixado, 3% pre fixado, 20% IPCA, 10% multimercado e 32% renda variavel;

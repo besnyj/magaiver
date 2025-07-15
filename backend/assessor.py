@@ -1,7 +1,4 @@
-from django.db import models
-from django.contrib.auth.models import User
-
-class Assessor(models.Model):
+class Assessor:
 
     def __init__(self, email, password):
         self.email = email
