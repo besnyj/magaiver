@@ -2,7 +2,7 @@ class Assessor:
 
     def __init__(self, email, password):
         self.email = email
-        self.password = password
+        self.passowrd = password
 
     def __str__(self):
         return self.email
@@ -10,5 +10,5 @@ class Assessor:
     def to_dict(self):
         return {
             'email': self.email,
-            'password': self.password
+            'password': self.passowrd
         }

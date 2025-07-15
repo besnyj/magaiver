@@ -3,6 +3,8 @@ from assessor import Assessor
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
+from backend.check import Check
+
 connection = sqlite3.connect("assessores.db")
 cursor = connection.cursor()
 
@@ -17,7 +19,10 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
 
-        self.wfile.write(json.dumps(response_data).encode())
+        post_data = json_to_object(body)
+        credentials = Check(authenticate_credentials(post_data))
+        print(credentials.value)
+        self.wfile.write(json.dumps(credentials.do_dict()).encode())
 
     def do_OPTIONS(self):
         self.send_response(200, "ok")
@@ -29,7 +34,8 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def add_credentials(assessor: Assessor):
-    cursor.execute(f"INSERT INTO credenciais VALUES ('{assessor.email}',"
+
+    cursor.execute(f"INSERT INTO credentials VALUES ('{assessor.email}',"
                    f"'{assessor.password}')")
     connection.commit()
     print(assessor.email + " adicionado com sucesso.")
@@ -47,12 +53,16 @@ def run(server_class=HTTPServer, handler_class=Handler, port=8080):
     httpd.serve_forever()
 
 def authenticate_credentials(assessor: Assessor):
-    pass
+
+    try:
+        if cursor.execute(f"SELECT * FROM credentials WHERE email = '{assessor.email}'").fetchall()[0][1] == assessor.password:
+            return True
+        return False
+    except:
+        return False
 
 def json_to_object(body: str) -> Assessor:
     return Assessor(**json.loads(body))
-
-
 
 
 run()

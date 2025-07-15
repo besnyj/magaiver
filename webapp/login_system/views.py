@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import requests
-from .models import Assessor
+from .assessor import Assessor
+from .check import Check
 import json
 
 
@@ -13,15 +14,15 @@ def login_user(request):
 
         credentials = Assessor(username, password)
         credentials = credentials.to_dict()
+        print(credentials)
 
-        r = requests.post('http://localhost:8080/', json=credentials)
-        print(r.text)
+        isValidCredential = Check(**json.loads(requests.post('http://localhost:8080/', json=credentials).text))
+        print(isValidCredential.value)
 
-        # if user is not None:
-        #     login(request, user)
-        #     return redirect('portfolio')
-        # else:
-        #     messages.success(request, ("Error"))
+        if isValidCredential:
+            redirect('portfolio')
+        else:
+            pass
 
     return render(request, 'authentication/login.html', {})
 
