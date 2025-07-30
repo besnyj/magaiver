@@ -60,7 +60,7 @@ export default function Portfolio(): React.ReactElement {
         formData.append('file', selectedFile);
 
         try {
-            const response = await fetch('http://localhost:8000/upload_overview', { // <-- Replace with your API URL
+            const response = await fetch('http://localhost:8000/upload_overview', {
                 method: 'POST',
                 body: formData,
             });
@@ -80,9 +80,6 @@ export default function Portfolio(): React.ReactElement {
         }
     };
 
-    // --- Conditional Rendering Logic ---
-
-    // Result View (Success or Error)
     if (apiResponse || error) {
         return (
             <Container maxWidth="sm">
@@ -106,7 +103,7 @@ export default function Portfolio(): React.ReactElement {
         );
     }
 
-    // Initial Upload View
+
     return (
         <Container maxWidth="sm">
             <Box
