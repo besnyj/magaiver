@@ -1,0 +1,6 @@
+﻿
+	- Super conservative:100% pós fixados;
+	- Conservative profile: 65% pos fixado, 3% pre fixado, 20% IPCA e 12% multimercado;
+	- Moderate: 50% pos fixado, 3% pre fixado, 25% IPCA, 10% multimercado e 12% renda variavel;
+	- Semi-Agressive: 40% pos fixado, 7% pre fixado, 23% IPCA, 7% multimercado e 23% renda variavel;
+	- Agressive: 35% pos fixado, 3% pre fixado, 20% IPCA, 10% multimercado e 32% renda variavel;
