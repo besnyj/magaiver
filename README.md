@@ -154,18 +154,3 @@ The application will be available at `http://localhost:5173` (or another port if
 7.  The Gemma model generates the portfolio text.
 8.  The backend returns the generated text to the frontend in a JSON response.
 9.  The frontend displays the text response on the screen. If any step fails, an error message is shown instead.
-
-## Recommendations for Improvement
-
-This project has a solid foundation, but several areas could be improved for better performance, robustness, and maintainability.
-
-*   **Backend**:
-    *   **Ollama Process Management**: Ollama should be run as a persistent, separate service, not started and stopped with every API call.
-    *   **Error Handling**: Improve `try/except` blocks to return meaningful HTTP exceptions to the client instead of printing to the console.
-    *   **Configuration**: Avoid hardcoding values like Excel cell positions, file paths, and model names. Use a configuration file or environment variables.
-    *   **Streaming Response**: The backend sets `stream=True` for the Ollama call but doesn't handle the response as a stream. This should be fixed to correctly process the LLM's output as it's generated.
-*   **Frontend**:
-    *   **Dependencies**: The `react-router-dom` package is used but missing from `package.json`.
-    *   **Response Rendering**: The portfolio text is rendered as a plain string. Using a Markdown renderer would preserve the formatting from the LLM.
-    *   **Environment Variables**: The backend API URL is hardcoded. It should be placed in a `.env` file.
-    *   **UI Consistency**: The project has two different navigation/layout approaches (`header.tsx` and `test.tsx`). A single, consistent approach should be chosen.
