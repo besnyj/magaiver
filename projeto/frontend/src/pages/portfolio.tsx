@@ -89,7 +89,7 @@ export default function Portfolio(): React.ReactElement {
                         </Typography>
                     )}
                     {error && (
-                        <Alert severity="error" sx={{ width: '100%', textAlign: 'left' }}>
+                        <Alert severity="error" sx={{ widáth: '100%', textAlign: 'left' }}>
                             <AlertTitle>Error</AlertTitle>
                             {error}
                         </Alert>
