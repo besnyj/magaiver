@@ -1,12 +1,14 @@
 import io
+import subprocess
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from projeto.backend.start import start
 from .models import GenmaResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-
+ollama_server = subprocess.Popen(['ollama', 'serve'], stdout=subprocess.DEVNULL,
+                                 stderr=subprocess.DEVNULL)
+print("ollama started")
 api = FastAPI()
-
 
 api.add_middleware(
     CORSMiddleware,

@@ -79,14 +79,13 @@ export default function Portfolio(): React.ReactElement {
             setIsUploading(false);
         }
     };
-
     if (apiResponse || error) {
         return (
             <Container maxWidth="sm">
                 <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
                     {apiResponse && (
-                        <Typography component="h2" dangerouslySetInnerHTML={{__html: apiResponse}}>
-                        </Typography>
+                        <div dangerouslySetInnerHTML={{__html: apiResponse}}>
+                        </div>
                     )}
                     {error && (
                         <Alert severity="error" sx={{ width: '100%', textAlign: 'left' }}>
@@ -101,7 +100,6 @@ export default function Portfolio(): React.ReactElement {
             </Container>
         );
     }
-
 
     return (
         <Container maxWidth="sm">
