@@ -85,8 +85,7 @@ export default function Portfolio(): React.ReactElement {
             <Container maxWidth="sm">
                 <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
                     {apiResponse && (
-                        <Typography component="h2">
-                            {apiResponse}
+                        <Typography component="h2" dangerouslySetInnerHTML={{__html: apiResponse}}>
                         </Typography>
                     )}
                     {error && (
