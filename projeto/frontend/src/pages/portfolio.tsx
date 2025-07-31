@@ -60,7 +60,7 @@ export default function Portfolio(): React.ReactElement {
         formData.append('file', selectedFile);
 
         try {
-            const response = await fetch('http://localhost:8000/upload_overview', { // <-- Replace with your API URL
+            const response = await fetch('http://localhost:8000/upload_overview', {
                 method: 'POST',
                 body: formData,
             });
@@ -80,17 +80,19 @@ export default function Portfolio(): React.ReactElement {
         }
     };
 
-    // --- Conditional Rendering Logic ---
+    const stringToHTML = function (str: string) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(str, 'text/html')
+        return doc.body
+    }
 
-    // Result View (Success or Error)
     if (apiResponse || error) {
         return (
             <Container maxWidth="sm">
                 <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
                     {apiResponse && (
-                        <Typography component="h2">
-                            {apiResponse}
-                        </Typography>
+                        <div dangerouslySetInnerHTML={{__html: apiResponse}}>
+                        </div>
                     )}
                     {error && (
                         <Alert severity="error" sx={{ width: '100%', textAlign: 'left' }}>
@@ -106,7 +108,6 @@ export default function Portfolio(): React.ReactElement {
         );
     }
 
-    // Initial Upload View
     return (
         <Container maxWidth="sm">
             <Box
